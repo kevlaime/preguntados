@@ -42,9 +42,10 @@ while run:
         elif event.type == tiempo_15_s:
             print("paso 15 segundos")
             
-    ventana.fill((COLOR_VIOLETA))
-    pygame.draw.circle(ventana, COLOR_BLANCO,(100,400),50)
-
+    texto = fuente.render(f"TIMER: {tiempo_restante}", True, COLOR_NEGRO)
+    ventana.fill((COLOR_BLANCO))
+    ventana.blit(texto,(10,10))
+    pygame.draw.circle(ventana, COLOR_NEGRO,(100,400),50)
 
     if tiempo_restante == 0:
         run = False
