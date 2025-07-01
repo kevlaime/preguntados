@@ -32,3 +32,6 @@ FUENTE_TEXTO = pygame.font.SysFont("Arial",25,True)
 FUENTE_VOLUMEN = pygame.font.SysFont("Arial",50,True)
 
 BOTON_JUGAR = 0
+BOTON_CONFIG = 1
+BOTON_PUNTUACIONES = 2
+BOTON_SALIR = 3

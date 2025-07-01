@@ -2,11 +2,6 @@ import pygame
 import random
 from constantes import *
 
-def mezclar_lista():
-    input = ""
-
-
-
 def mostrar_texto(surface, text, pos, font, color=pygame.Color('black')):
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
     space = font.size(' ')[0]  # The width of a space.
