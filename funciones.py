@@ -1,6 +1,6 @@
-import pygame
 import random
 from constantes import *
+import pygame
 
 def mostrar_texto(surface, text, pos, font, color=pygame.Color('black')):
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
@@ -19,18 +19,33 @@ def mostrar_texto(surface, text, pos, font, color=pygame.Color('black')):
         x = pos[0]  # Reset the x.
         y += word_height  # Start on new row.
 
-#GENERAL
-def mezclar_lista(lista_preguntas:list) -> None:
-    random.shuffle(lista_preguntas)
+def crear_elemento_juego(textura:str,ancho:int,alto:int,pos_x:int,pos_y:int) -> dict:
+    elemento_juego = {}
+    elemento_juego["superficie"] = pygame.transform.scale(pygame.image.load(textura),(ancho,alto)) 
+    elemento_juego["rectangulo"] = pygame.rect.Rect(pos_x,pos_y,ancho,alto)
+    
+    return elemento_juego
 
-#GENERAL
+def crear_respuestas_preguntados(textura:str,ancho:int,alto:int,pos_x:int,pos_y:int) -> list:
+    lista_respuestas = []
+
+    for i in range(3):
+        respuesta = crear_elemento_juego(textura,ancho,alto,pos_x,pos_y)
+        pos_y += 80
+        lista_respuestas.append(respuesta)
+        
+    return lista_respuestas
+
+def limpiar_superficie(elemento_juego:dict,textura:str,ancho:int,alto:int) -> None:
+    elemento_juego["superficie"] = pygame.transform.scale(pygame.image.load(textura),(ancho,alto)) 
+    
 def reiniciar_estadisticas(datos_juego:dict) -> None:
     datos_juego["puntuacion"] = 0
     datos_juego["vidas"] = CANTIDAD_VIDAS
     datos_juego["nombre"] = ""
-    datos_juego["tiempo_restante"] = 30
+    datos_juego["tiempo_restante"] = TIEMPO_JUEGO
 
-#GENERAL
+#GENERAL (PUEDE SERVIRME EN PYGAME) 
 def verificar_respuesta(datos_juego:dict,pregunta:dict,respuesta:int) -> bool:
     if respuesta == pregunta["respuesta_correcta"]:
         datos_juego["puntuacion"] += PUNTUACION_ACIERTO
@@ -42,43 +57,23 @@ def verificar_respuesta(datos_juego:dict,pregunta:dict,respuesta:int) -> bool:
         
     return retorno
 
-def crear_elemento_juego(textura:str,ancho:int,alto:int,pos_x:int,pos_y:int) -> dict:
-    elemento_juego = {}
-    elemento_juego["superficie"] = pygame.transform.scale(pygame.image.load(textura),(ancho,alto))
-    elemento_juego["rectangulo"] = elemento_juego["superficie"].get_rect()
-    elemento_juego["rectangulo"].x = pos_x
-    elemento_juego["rectangulo"].y = pos_y
-    
-    return elemento_juego
+def mezclar_lista(lista_preguntas:list) -> None:
+    random.shuffle(lista_preguntas)
 
-def limpiar_superficie(elemento_juego:dict,textura:str,ancho:int,alto:int) -> None:
-    elemento_juego["superficie"] =  pygame.transform.scale(pygame.image.load(textura),(ancho,alto))
-    
-def obtener_respuesta_click(boton_respuesta_uno:dict,boton_respuesta_dos:dict,boton_respuesta_tres:dict,pos_click:tuple):
-    lista_aux = [boton_respuesta_uno["rectangulo"],boton_respuesta_dos["rectangulo"],boton_respuesta_tres["rectangulo"]]
-    respuesta = None
-    
-    for i in range(len(lista_aux)):
-        if lista_aux[i].collidepoint(pos_click):
-            respuesta = i + 1
-    
-    return respuesta
-
-def cambiar_pregunta(lista_preguntas:list,indice:int,caja_pregunta:dict,boton_respuesta_uno:dict,boton_respuesta_dos:dict,boton_respuesta_tres:dict) -> dict:
+def pasar_pregunta(lista_preguntas:list,indice:int,cuadro_pregunta:dict,lista_respuestas:list) -> dict:
     pregunta_actual = lista_preguntas[indice]
-    limpiar_superficie(caja_pregunta,"textura_pregunta.jpg",ANCHO_PREGUNTA,ALTO_PREGUNTA)
-    limpiar_superficie(boton_respuesta_uno,"textura_respuesta.jpg",ANCHO_BOTON,ALTO_BOTON)
-    limpiar_superficie(boton_respuesta_dos,"textura_respuesta.jpg",ANCHO_BOTON,ALTO_BOTON)
-    limpiar_superficie(boton_respuesta_tres,"textura_respuesta.jpg",ANCHO_BOTON,ALTO_BOTON)
+    limpiar_superficie(cuadro_pregunta,MEDIA_IMAGE_PREGUNTA,ANCHO_PREGUNTA,ALTO_PREGUNTA)
     
+    for i in range(len(lista_respuestas)):
+        limpiar_superficie(lista_respuestas[i],MEDIA_IMAGE_PREGUNTA,ANCHO_BOTON,ALTO_BOTON)
+        
     return pregunta_actual
 
-def crear_botones_menu() -> list:
+def crear_botones_menu(textura:str,ancho:int,alto:int,pos_x:int,pos_y:int,cantidad_botones:int) -> list:
     lista_botones = []
-    pos_y = 115
 
-    for i in range(4):
-        boton = crear_elemento_juego("textura_respuesta.jpg",ANCHO_BOTON,ALTO_BOTON,125,pos_y)
+    for i in range(cantidad_botones):
+        boton = crear_elemento_juego(textura,ancho,alto,pos_x,pos_y)
         pos_y += 80
         lista_botones.append(boton)
         
