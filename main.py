@@ -4,7 +4,7 @@ from constantes import *
 pygame.init()
 
 pygame.display.set_caption("Preguntados")
-icono = pygame.image.load("media/icono.png")
+icono = pygame.image.load("media/image/icono.png")
 pygame.display.set_icon(icono)
 
 ventana = pygame.display.set_mode((PANTALLA))
@@ -53,5 +53,3 @@ while run:
     pygame.display.update()
 
 pygame.quit()
-
-#MAÑANA HACER EL MENU 
