@@ -4,8 +4,8 @@ from funciones import *
 
 pygame.init()
 
-boton_suma = crear_elemento_juego("mas.webp",60,60,420,200)
-boton_resta = crear_elemento_juego("menos.webp",60,60,20,200)
+boton_suma = crear_elemento_juego(MEDIA_IMAGE_MAS_VOLUMEN,60,60,420,200)
+boton_resta = crear_elemento_juego(MEDIA_IMAGE_MENOS_VOLUMEN,60,60,20,200)
 boton_volver = crear_elemento_juego(MEDIA_IMAGE_PREGUNTA,100,40,10,10)
 
 def mostrar_ajustes(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],datos_juego:dict) -> str:
@@ -40,7 +40,7 @@ def mostrar_ajustes(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event
     pantalla.blit(boton_resta["superficie"],boton_resta["rectangulo"])
     pantalla.blit(boton_volver["superficie"],boton_volver["rectangulo"])
     
-    mostrar_texto(pantalla,f"{datos_juego["volumen_musica"]} %",(200,200),FUENTE_VOLUMEN)
+    mostrar_texto(pantalla,f"{datos_juego['volumen_musica']} %",(200,200),FUENTE_VOLUMEN)
     mostrar_texto(boton_volver["superficie"],"VOLVER",(5,5),FUENTE_RESPUESTA,COLOR_BLANCO)
     
     return retorno

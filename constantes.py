@@ -39,7 +39,8 @@ MEDIA_IMAGE_ICONO = "media/image/icono.png"
 MEDIA_IMAGE_FONDO = "media/image/fondo.png"
 MEDIA_IMAGE_PREGUNTA = "media/image/boton-pregunta.png"
 MEDIA_IMAGE_RESPUESTA = "media/image/boton-respuesta.png"
-
+MEDIA_IMAGE_MAS_VOLUMEN = "media/image/mas-volumen.jpg"
+MEDIA_IMAGE_MENOS_VOLUMEN = "media/image/menos-volumen.png"
 
 BOTON_JUGAR = 0
 BOTON_CONFIG = 1
