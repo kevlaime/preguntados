@@ -1,4 +1,6 @@
 import pygame
+import json
+from datetime import datetime
 from constantes import *
 from funciones import *
 
@@ -14,7 +16,6 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
             tecla_presionada = pygame.key.name(evento.key)
             bloc_mayus = pygame.key.get_mods()
             
-                        
             if tecla_presionada == "backspace":
                 datos_juego["nombre"] = datos_juego["nombre"][0:len(datos_juego["nombre"]) - 1]
             elif tecla_presionada == "space":
@@ -29,20 +30,44 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                 #Guarda la puntuacion al ranking
                 #lista_rankings.append(puntuacion)
                 #Actualizo el json
+
+                nombre = datos_juego["nombre"].strip()
+
+                if len(nombre) >= 3 and nombre.replace(" ", "").isalpha():
+                    nueva_partida = {
+                        "nombre": nombre,
+                        "puntaje": datos_juego["puntuacion"],
+                        "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    }
+
+                try:
+                    with open("partidas.json", "r", encoding="utf-8") as archivo:
+                        lista_json = json.load(archivo)
+                except FileNotFoundError:
+                    lista_json = []
+
+                lista_json.append(nueva_partida)
+
+                with open("partidas.json", "w", encoding="utf-8") as archivo:
+                    json.dump(lista_json, archivo, indent=4)
+
+                lista_rankings.clear()
+                lista_rankings.extend(lista_json)  # actualizar la lista en memoria
+
                 reiniciar_estadisticas(datos_juego)
                 retorno = "menu"
                 
     pantalla.fill(COLOR_BLANCO)
     pantalla.blit(cuadro_texto["superficie"],cuadro_texto["rectangulo"])
     
-    mostrar_texto(pantalla,f"Usted obtuvo: {datos_juego["puntuacion"]} puntos",(250,100),FUENTE_PREGUNTA)
+    mostrar_texto(pantalla,f"Usted obtuvo: {datos_juego['puntuacion']} puntos",(250,100),FUENTE_PREGUNTA)
     
     if datos_juego["nombre"] != "":
         limpiar_superficie(cuadro_texto,MEDIA_IMAGE_PREGUNTA,ANCHO_CUADRO,ALTO_CUADRO)
-        mostrar_texto(cuadro_texto["superficie"],datos_juego["nombre"],(10,0),FUENTE_CUADRO,COLOR_BLANCO)
+        mostrar_texto(cuadro_texto["superficie"],datos_juego['nombre'],(10,0),FUENTE_CUADRO,COLOR_BLANCO)
 
         if random.randint(1,2) == 1:
-            mostrar_texto(cuadro_texto["superficie"],f"{datos_juego["nombre"]}|",(10,0),FUENTE_CUADRO,COLOR_BLANCO)
+            mostrar_texto(cuadro_texto["superficie"],f"{datos_juego['nombre']}|",(10,0),FUENTE_CUADRO,COLOR_BLANCO)
 
     else:
         limpiar_superficie(cuadro_texto,MEDIA_IMAGE_PREGUNTA,ANCHO_CUADRO,ALTO_CUADRO)
