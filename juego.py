@@ -31,20 +31,17 @@ def mostrar_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],
                 for i in range(len(lista_respuestas)):
                     if lista_respuestas[i]["rectangulo"].collidepoint(evento.pos):
                         respuesta = (i + 1)
-                        resultado = verificar_respuesta(datos_juego, pregunta_actual, respuesta)
-                        if resultado is True:
+                        if verificar_respuesta(datos_juego,pregunta_actual,respuesta) == True:
                             CLICK_SONIDO.play()
-                        elif resultado is False:
+                        else:
                             ERROR_SONIDO.play()
-
-                        if resultado is not None:
-                            datos_juego["indice"] += 1
-                            if datos_juego["indice"] >= len(lista_preguntas):
-                                datos_juego["indice"] = 0
-                                mezclar_lista(lista_preguntas)
-
-                            pregunta_actual = pasar_pregunta(lista_preguntas, datos_juego["indice"], cuadro_pregunta, lista_respuestas)
-
+                        
+                        datos_juego["indice"] += 1
+                        if datos_juego["indice"] >= len(lista_preguntas):
+                            datos_juego["indice"] = 0
+                            mezclar_lista(lista_preguntas)
+                        
+                        pregunta_actual = pasar_pregunta(lista_preguntas,datos_juego["indice"],cuadro_pregunta,lista_respuestas)
 
             if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
                 if boton_bomba["rectangulo"].collidepoint(evento.pos) and datos_juego["comodines"]["bomba"]:
