@@ -8,9 +8,7 @@ fondo_menu = pygame.transform.scale(pygame.image.load(MEDIA_IMAGE_FONDO),PANTALL
 lista_nombres_botones = ["JUGAR","AJUSTES","RANKINGS","SALIR"]
 
 def mostrar_menu(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event]) -> str:
-    #Manejar los eventos
     retorno = manejar_eventos(cola_eventos)
-    #Dibujamos los cambios en pantalla
     dibujar_pantalla(pantalla)
 
     return retorno
@@ -20,7 +18,6 @@ def manejar_eventos(cola_eventos:list[pygame.event.Event]):
     
     for evento in cola_eventos:
         if evento.type == pygame.MOUSEBUTTONDOWN:
-            #SOLO CLICK IZQUIERDO
             if evento.button == 1:
                 for i in range(len(lista_botones)):
                     if lista_botones[i]["rectangulo"].collidepoint(evento.pos):

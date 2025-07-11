@@ -17,11 +17,23 @@ pygame.display.set_icon(icono)
 ventana = pygame.display.set_mode(PANTALLA)
 run = True
 reloj = pygame.time.Clock()
-datos_juego ={"puntuacion":0,"vidas":3,"nombre":"","tiempo_restante":TIEMPO_JUEGO,"volumen_musica":0,"indice":0}
+
+datos_juego ={"puntuacion":0,"vidas":3,"nombre":"",
+              "tiempo_restante":TIEMPO_JUEGO,"volumen_musica":0,"indice":0, "racha": 0,
+              "comodines":{
+                    "bomba": True,
+                    "x2" : True,
+                    "doble_chance": True,
+                    "pasar": True
+                },
+                "x2_activo": False,
+                "doble_chance_activa": False,
+                "intento_extra": False
+            }
+
 ventana_actual = "menu"
 bandera_juego = False
 mezclar_lista(lista_preguntas)
-#Deberia venir del json
 
 try:
     with open("partidas.json", "r", encoding="utf-8") as archivo:
@@ -41,7 +53,6 @@ while run:
         ventana_actual = mostrar_menu(ventana,cola_eventos)
     elif ventana_actual == "juego":
         if bandera_juego == False:
-            #MUSICA SOLO EN EL JUEGO
             porcentaje_volumen = datos_juego["volumen_musica"] / 100
             pygame.mixer.music.load(MUSICA_JUEGO)
             pygame.mixer.music.set_volume(porcentaje_volumen)
@@ -51,9 +62,6 @@ while run:
     elif ventana_actual == "ajustes":
         ventana_actual = mostrar_ajustes(ventana,cola_eventos,datos_juego)
         
-        #MUSICA EN TODO EL JUEGO
-        # porcentaje_volumen = datos_juego["volumen_musica"] / 100
-        # pygame.mixer.music.set_volume(porcentaje_volumen)
     elif ventana_actual == "rankings":
         ventana_actual = mostrar_rankings(ventana,cola_eventos,lista_rankings)
     elif ventana_actual == "salir":
@@ -61,7 +69,6 @@ while run:
         run = False
     elif ventana_actual == "terminado":
         if bandera_juego == True:
-            #MUSICA EN SOLO EL JUEGO
             pygame.mixer.music.stop()
             bandera_juego = False
         

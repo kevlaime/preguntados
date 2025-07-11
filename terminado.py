@@ -21,15 +21,11 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
             elif tecla_presionada == "space":
                 datos_juego["nombre"] += " "
             elif len(tecla_presionada) == 1: 
-                #Manipula el bloc mayus y el shift izq/der
                 if bloc_mayus >= 8192 or bloc_mayus == 1 or bloc_mayus == 2 :
                     datos_juego["nombre"] += tecla_presionada.upper()
                 else:
                     datos_juego["nombre"] += tecla_presionada
             elif tecla_presionada == "return":
-                #Guarda la puntuacion al ranking
-                #lista_rankings.append(puntuacion)
-                #Actualizo el json
 
                 nombre = datos_juego["nombre"].strip()
 
@@ -52,7 +48,7 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     json.dump(lista_json, archivo, indent=4)
 
                 lista_rankings.clear()
-                lista_rankings.extend(lista_json)  # actualizar la lista en memoria
+                lista_rankings.extend(lista_json)
 
                 reiniciar_estadisticas(datos_juego)
                 retorno = "menu"

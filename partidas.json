@@ -8,5 +8,45 @@
         "nombre": "burro",
         "puntaje": -75,
         "fecha": "2025-07-11 15:59:57"
+    },
+    {
+        "nombre": "kevin",
+        "puntaje": 700,
+        "fecha": "2025-07-11 17:15:52"
+    },
+    {
+        "nombre": "testbomba",
+        "puntaje": 425,
+        "fecha": "2025-07-11 17:19:24"
+    },
+    {
+        "nombre": "testracha",
+        "puntaje": 500,
+        "fecha": "2025-07-11 17:23:32"
+    },
+    {
+        "nombre": "estadisticas",
+        "puntaje": 325,
+        "fecha": "2025-07-11 17:39:16"
+    },
+    {
+        "nombre": "asd",
+        "puntaje": -75,
+        "fecha": "2025-07-11 18:08:52"
+    },
+    {
+        "nombre": "testboton",
+        "puntaje": 700,
+        "fecha": "2025-07-11 18:10:44"
+    },
+    {
+        "nombre": "poco",
+        "puntaje": 25,
+        "fecha": "2025-07-11 18:36:35"
+    },
+    {
+        "nombre": "testgeneral",
+        "puntaje": 525,
+        "fecha": "2025-07-11 18:39:58"
     }
 ]
