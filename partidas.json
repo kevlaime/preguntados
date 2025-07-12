@@ -48,5 +48,30 @@
         "nombre": "testgeneral",
         "puntaje": 525,
         "fecha": "2025-07-11 18:39:58"
+    },
+    {
+        "nombre": "prueba",
+        "puntaje": 500,
+        "fecha": "2025-07-11 18:53:58"
+    },
+    {
+        "nombre": "pruebaprueba",
+        "puntaje": 125,
+        "fecha": "2025-07-11 19:31:48"
+    },
+    {
+        "nombre": "pruebados",
+        "puntaje": 550,
+        "fecha": "2025-07-11 19:32:25"
+    },
+    {
+        "nombre": "testdoce",
+        "puntaje": 575,
+        "fecha": "2025-07-11 20:09:09"
+    },
+    {
+        "nombre": "asdasdasd",
+        "puntaje": 0,
+        "fecha": "2025-07-11 20:30:34"
     }
 ]

@@ -9,7 +9,9 @@ cuadro_texto = crear_elemento_juego(MEDIA_IMAGE_PREGUNTA,ANCHO_CUADRO,ALTO_CUADR
 
 def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],datos_juego:dict,lista_rankings:list) -> str:
     retorno = "terminado"
-    
+    fondo_terminado = pygame.transform.scale(pygame.image.load(MEDIA_IMAGE_FONDO), PANTALLA)
+    pantalla.blit(fondo_terminado, (0, 0))
+
     for evento in cola_eventos:
         if evento.type == pygame.KEYDOWN:
             limpiar_superficie(cuadro_texto,MEDIA_IMAGE_PREGUNTA,ANCHO_CUADRO,ALTO_CUADRO)
@@ -53,7 +55,6 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                 reiniciar_estadisticas(datos_juego)
                 retorno = "menu"
                 
-    pantalla.fill(COLOR_BLANCO)
     pantalla.blit(cuadro_texto["superficie"],cuadro_texto["rectangulo"])
     
     mostrar_texto(pantalla,f"Usted obtuvo: {datos_juego['puntuacion']} puntos",(250,100),FUENTE_PREGUNTA)

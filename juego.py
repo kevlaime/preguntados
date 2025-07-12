@@ -9,10 +9,10 @@ fondo_pantalla = pygame.transform.scale(pygame.image.load(MEDIA_IMAGE_FONDO),PAN
 cuadro_pregunta = crear_elemento_juego(MEDIA_IMAGE_PREGUNTA,ANCHO_PREGUNTA,ALTO_PREGUNTA,80,80)
 lista_respuestas = crear_respuestas_preguntados(MEDIA_IMAGE_PREGUNTA,ANCHO_BOTON,ALTO_BOTON,125,245)
 
-boton_bomba = crear_elemento_juego("media/image/boton-bomba.png", 80, 50, 480, 150)
-boton_x2 = crear_elemento_juego("media/image/boton-x2.png", 80, 50, 480, 210)
-boton_doble = crear_elemento_juego("media/image/boton-doble.png", 80, 50, 480, 270)
-boton_pasar = crear_elemento_juego("media/image/boton-pasar.png", 80, 50, 480, 330)
+boton_bomba = crear_elemento_juego(MEDIA_IMAGE_BOTON_BOMBA, 80, 50, 480, 150)
+boton_x2 = crear_elemento_juego(MEDIA_IMAGE_BOTON_X2, 80, 50, 480, 210)
+boton_doble = crear_elemento_juego(MEDIA_IMAGE_BOTON_DOBLE, 80, 50, 480, 270)
+boton_pasar = crear_elemento_juego(MEDIA_IMAGE_BOTON_PASAR, 80, 50, 480, 330)
 
 evento_tiempo = pygame.USEREVENT 
 pygame.time.set_timer(evento_tiempo,1000)
@@ -35,6 +35,10 @@ def mostrar_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],
                             CLICK_SONIDO.play()
                         else:
                             ERROR_SONIDO.play()
+
+                        print(f"Aciertos: {pregunta_actual.get('aciertos', 0)}")
+                        print(f"Fallos: {pregunta_actual.get('fallos', 0)}")
+                        print(f"Preguntada: {pregunta_actual.get('veces_preguntada', 0)}")
                         
                         datos_juego["indice"] += 1
                         if datos_juego["indice"] >= len(lista_preguntas):

@@ -66,6 +66,8 @@ def verificar_respuesta(datos_juego:dict, pregunta:dict, respuesta:int) -> bool:
         if datos_juego.get("x2_activo"):
             puntos *= 2
             datos_juego["x2_activo"] = False
+            datos_juego["doble_chance_activa"] = False
+            datos_juego["intento_extra"] = False
 
         datos_juego["puntuacion"] += puntos
         datos_juego["racha"] += 1
@@ -87,7 +89,6 @@ def verificar_respuesta(datos_juego:dict, pregunta:dict, respuesta:int) -> bool:
             datos_juego["doble_chance_activa"] = False
             datos_juego["intento_extra"] = False
             return False
-
 
 def mezclar_lista(lista_preguntas:list) -> None:
     random.shuffle(lista_preguntas)

@@ -41,6 +41,10 @@ MEDIA_IMAGE_PREGUNTA = "media/image/boton-respuesta.png"
 MEDIA_IMAGE_RESPUESTA = "media/image/boton-respuesta.png"
 MEDIA_IMAGE_MAS_VOLUMEN = "media/image/mas-volumen.jpg"
 MEDIA_IMAGE_MENOS_VOLUMEN = "media/image/menos-volumen.png"
+MEDIA_IMAGE_BOTON_BOMBA = "media/image/boton-bomba.png"
+MEDIA_IMAGE_BOTON_X2 = "media/image/boton-x2.png"
+MEDIA_IMAGE_BOTON_DOBLE = "media/image/boton-doble.png"
+MEDIA_IMAGE_BOTON_PASAR = "media/image/boton-pasar.png"
 
 BOTON_JUGAR = 0
 BOTON_CONFIG = 1
