@@ -1,2 +1,3 @@
 - PREGUNTADOS
+
 pip install pygame
